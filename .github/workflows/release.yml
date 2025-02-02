@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Срабатывает на теги, соответствующие шаблону версии
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+
+    - name: Build project
+      run: ./gradlew build
+
+    - name: Create release directory
+      run: mkdir -p releases
+
+    - name: Copy JAR to release directory
+      run: cp build/libs/*.jar releases/
+
+    - name: Upload Release Asset
+      uses: actions/upload-artifact@v4
+      with:
+        name: mod-jar
+        path: releases/*.jar
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: releases/*.jar
+        tag_name: ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

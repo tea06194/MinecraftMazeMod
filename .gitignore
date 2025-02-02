@@ -1,0 +1,38 @@
+# Eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# IntelliJ IDEA
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# Gradle
+build
+.gradle
+
+# Other
+eclipse
+run
+
+# Files from Forge MDK
+forge*changelog.txt
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
