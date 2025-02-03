@@ -6,7 +6,11 @@ Mod to build some mazes in Minecraft.
 - Add documentation for  instruments, build, run, main functions. This documentation should be undersandable by Language Models.
 - Add documentation for used libraries and their targets and relationships between them in graph visualisation and as readme.md section.
 
+v.1.0.0
+<img src="https://github.com/user-attachments/assets/41e6d679-749c-4b18-838b-005f0824254f" alt="v1.0.0" width="500" height="auto">
 
+v1.0.1
+<img src="https://github.com/user-attachments/assets/654afd8e-f74b-4334-85c0-64d1a381318b" alt="v1.0.1" width="auto" height="350">
 
 ------------------------------------------------------------------------------------------------
 
