@@ -1,10 +1,15 @@
 package com.mazemod.world;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import java.util.*;
 
 public class MazeGenerator {
     private final Random random = new Random();

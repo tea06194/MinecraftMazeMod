@@ -1,4 +1,4 @@
-# Eclipse
+# eclipse
 bin
 *.launch
 .settings
@@ -6,33 +6,20 @@ bin
 .classpath
 .project
 
-# IntelliJ IDEA
+# idea
 out
 *.ipr
 *.iws
 *.iml
 .idea
 
-# Gradle
+# gradle
 build
 .gradle
 
-# Other
+# other
 eclipse
 run
 
 # Files from Forge MDK
 forge*changelog.txt
-
-# OS-specific files
-.DS_Store
-Thumbs.db
-
-# Logs
-logs/
-*.log
-
-# Temporary files
-*.tmp
-*.temp
-*.swp
