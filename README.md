@@ -12,6 +12,9 @@ v.1.0.0
 v1.0.1
 <img src="https://github.com/user-attachments/assets/654afd8e-f74b-4334-85c0-64d1a381318b" alt="v1.0.1" width="auto" height="350">
 
+v1.1.0
+<img src=https://github.com/user-attachments/assets/bea16b41-e689-45e4-9a4d-095096369062 alt="v1.1.0" width="auto" height="350">
+
 ------------------------------------------------------------------------------------------------
 
 Source installation information for modders
