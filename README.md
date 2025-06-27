@@ -15,6 +15,9 @@ v1.0.1
 v1.1.0
 <img src="https://github.com/user-attachments/assets/bea16b41-e689-45e4-9a4d-095096369062" alt="v1.1.0" width="auto" height="350">
 
+v1.1.1
+<img src="https://github.com/user-attachments/assets/0879355f-755f-4761-8d7d-1caa0d634989" alt="v1.1.1" width="auto" height="350">
+
 ------------------------------------------------------------------------------------------------
 Requirements:
  - JDK 21
