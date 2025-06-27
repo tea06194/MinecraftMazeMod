@@ -25,6 +25,7 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(Items.STONE)) // Иконка вкладки
                     .displayItems((parameters, output) -> {
                         output.accept(MazeMod.MAZE_ITEM.get()); // Добавляем предмет в вкладку
+						output.accept(MazeMod.GLASS_MAZE_ITEM.get());
                     })
                     .build()
     );
