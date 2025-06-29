@@ -20,7 +20,7 @@ public class MazeGenerator {
 
 	private static final int WIDTH = 30;
 	private static final int HEIGHT = 30;
-	private static final int LEVELS = 30;
+	private static final int LEVELS = 3;
 	private static final int FLOOR_HEIGHT = 3; // Минимальная высота между этажами
 												//
 	// Добавляем поле для материала стен
@@ -98,14 +98,37 @@ public class MazeGenerator {
 		world.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 3);
 	}
 
+	// private Optional<BlockPos> hunt(Level world, BlockPos startPos, Set<BlockPos>
+	// visited) {
+	// for (int x = 1; x < WIDTH; x += 2) {
+	// for (int z = 1; z < HEIGHT; z += 2) {
+	// BlockPos pos = startPos.offset(x, 0, z);
+	// if (!visited.contains(pos)) {
+	// for (BlockPos neighbor : getValidNeighbors(world, pos, startPos, visited)) {
+	// carvePath(world, pos, neighbor);
+	// visited.add(pos);
+	// return Optional.of(pos);
+	// }
+	// }
+	// }
+	// }
+	// return Optional.empty();
+	// }
+
+	// Исправленный метод hunt
 	private Optional<BlockPos> hunt(Level world, BlockPos startPos, Set<BlockPos> visited) {
-		for (int x = 1; x < WIDTH; x += 2) {
-			for (int z = 1; z < HEIGHT; z += 2) {
+		for (int x = 1; x < WIDTH - 1; x += 2) {
+			for (int z = 1; z < HEIGHT - 1; z += 2) {
 				BlockPos pos = startPos.offset(x, 0, z);
 				if (!visited.contains(pos)) {
-					for (BlockPos neighbor : getValidNeighbors(world, pos, startPos, visited)) {
+					// Проверяем, есть ли рядом уже посещенные клетки
+					List<BlockPos> visitedNeighbors = getVisitedNeighbors(world, pos, startPos,
+							visited);
+					if (!visitedNeighbors.isEmpty()) {
+						// Соединяем с одним из посещенных соседей
+						BlockPos neighbor = visitedNeighbors.get(random.nextInt(visitedNeighbors.size()));
 						carvePath(world, pos, neighbor);
-						visited.add(pos);
+						visited.add(pos); // ВАЖНО: добавляем в visited
 						return Optional.of(pos);
 					}
 				}
@@ -114,45 +137,21 @@ public class MazeGenerator {
 		return Optional.empty();
 	}
 
-	//
-	// // Исправленный метод hunt
-	// private Optional<BlockPos> hunt(Level world, BlockPos startPos, Set<BlockPos>
-	// visited) {
-	// for (int x = 1; x < WIDTH; x += 2) {
-	// for (int z = 1; z < HEIGHT; z += 2) {
-	// BlockPos pos = startPos.offset(x, 0, z);
-	// if (!visited.contains(pos)) {
-	// // Проверяем, есть ли рядом уже посещенные клетки
-	// List<BlockPos> visitedNeighbors = getVisitedNeighbors(world, pos, startPos,
-	// visited);
-	// if (!visitedNeighbors.isEmpty()) {
-	// // Соединяем с одним из посещенных соседей
-	// BlockPos neighbor =
-	// visitedNeighbors.get(random.nextInt(visitedNeighbors.size()));
-	// carvePath(world, pos, neighbor);
-	// visited.add(pos); // ВАЖНО: добавляем в visited
-	// return Optional.of(pos);
-	// }
-	// }
-	// }
-	// }
-	// return Optional.empty();
-	// }
-	//
-	// // Вспомогательный метод для поиска посещенных соседей
-	// private List<BlockPos> getVisitedNeighbors(Level world, BlockPos pos,
-	// BlockPos startPos, Set<BlockPos> visited) {
-	// int[][] directions = { { 2, 0 }, { -2, 0 }, { 0, 2 }, { 0, -2 } };
-	// List<BlockPos> neighbors = new ArrayList<>();
-	//
-	// for (int[] dir : directions) {
-	// BlockPos next = pos.offset(dir[0], 0, dir[1]);
-	// if (isInBounds(next, startPos) && visited.contains(next)) {
-	// neighbors.add(next);
-	// }
-	// }
-	// return neighbors;
-	// }
+	// Вспомогательный метод для поиска посещенных соседей
+	private List<BlockPos> getVisitedNeighbors(Level world, BlockPos pos,
+			BlockPos startPos, Set<BlockPos> visited) {
+		int[][] directions = { { 2, 0 }, { -2, 0 }, { 0, 2 }, { 0, -2 } };
+		List<BlockPos> neighbors = new ArrayList<>();
+
+		for (int[] dir : directions) {
+			BlockPos next = pos.offset(dir[0], 0, dir[1]);
+			if (isInBounds(next, startPos) && visited.contains(next)) {
+				neighbors.add(next);
+			}
+		}
+		return neighbors;
+	}
+
 	private boolean isInBounds(BlockPos pos, BlockPos startPos) {
 		int x = pos.getX() - startPos.getX();
 		int z = pos.getZ() - startPos.getZ();
